@@ -17,6 +17,16 @@ namespace WebAddressbookTests
         {
         }
 
+        public ContactHelper Create(ContactData contact)
+        {
+            manager.Navigator.GoToContactsPage();
+            InitContactCreation();
+            FillContactForm(contact);
+            SubmitContactCreation();
+            ReturnToContactsPage();
+            return this;
+        }
+
         public ContactHelper ReturnToContactsPage()
         {
             driver.FindElement(By.LinkText("home page")).Click();
