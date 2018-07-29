@@ -36,7 +36,7 @@ namespace WebAddressbookTests
             {
                 string lastname = element.FindElement(By.XPath(".//td[2]")).Text;
                 string firstname = element.FindElement(By.XPath(".//td[3]")).Text;
-                contacts.Add(new ContactData(lastname, firstname));
+                contacts.Add(new ContactData(firstname, lastname));
             }
             return contacts;
         }
@@ -96,7 +96,7 @@ namespace WebAddressbookTests
 
         public ContactHelper SelectContact(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + (index + 1) + "]")).Click();
             return this;
         }
 
@@ -109,7 +109,7 @@ namespace WebAddressbookTests
 
         public ContactHelper InitContactModification(int index)
         {
-            driver.FindElement(By.XPath("(//table[@id='maintable']/tbody/tr/td[8]/a/img)[" + index + "]")).Click();
+            driver.FindElement(By.XPath("(//table[@id='maintable']/tbody/tr/td[8]/a/img)[" + (index+1) + "]")).Click();
             return this;
         }
 

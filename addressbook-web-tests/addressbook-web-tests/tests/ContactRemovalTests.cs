@@ -20,11 +20,11 @@ namespace WebAddressbookTests
                 app.Contacts.Create(contact);
             }
 
-            List<GroupData> oldGroups = app.Groups.GetGroupsList();
+            List<ContactData> oldContacts = app.Contacts.GetContactsList();
             app.Contacts.Remove(0);
-            List<GroupData> newGroups = app.Groups.GetGroupsList();
-            oldGroups.RemoveAt(0);
-            Assert.AreEqual(oldGroups, newGroups);
+            List<ContactData> newContacts = app.Contacts.GetContactsList();
+            oldContacts.RemoveAt(0);
+            Assert.AreEqual(oldContacts, newContacts);
         }
     }
 }
