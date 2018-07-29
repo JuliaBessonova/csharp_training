@@ -2,6 +2,7 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Collections.Generic;
 using NUnit.Framework;
 
 
@@ -19,7 +20,11 @@ namespace WebAddressbookTests
                 app.Contacts.Create(contact);
             }
 
-            app.Contacts.Remove(1); 
+            List<GroupData> oldGroups = app.Groups.GetGroupsList();
+            app.Contacts.Remove(0);
+            List<GroupData> newGroups = app.Groups.GetGroupsList();
+            oldGroups.RemoveAt(0);
+            Assert.AreEqual(oldGroups, newGroups);
         }
     }
 }
