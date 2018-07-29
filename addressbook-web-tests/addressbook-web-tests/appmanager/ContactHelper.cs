@@ -27,18 +27,23 @@ namespace WebAddressbookTests
             return this;
         }
 
+        private List<ContactData> contactCache = null;
+
         public List<ContactData> GetContactsList()
         {
-            List<ContactData> contacts = new List<ContactData>();
-            manager.Navigator.GoToContactsPage();
-            ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
-            foreach (IWebElement element in elements)
+            if (contactCache == null)
             {
-                string lastname = element.FindElement(By.XPath(".//td[2]")).Text;
-                string firstname = element.FindElement(By.XPath(".//td[3]")).Text;
-                contacts.Add(new ContactData(firstname, lastname));
+                contactCache = new List<ContactData>();
+                manager.Navigator.GoToContactsPage();
+                ICollection<IWebElement> elements = driver.FindElements(By.Name("entry"));
+                foreach (IWebElement element in elements)
+                {
+                    string lastname = element.FindElement(By.XPath(".//td[2]")).Text;
+                    string firstname = element.FindElement(By.XPath(".//td[3]")).Text;
+                    contactCache.Add(new ContactData(firstname, lastname));
+                }
             }
-            return contacts;
+            return contactCache;
         }
 
         public ContactHelper Remove(int v)
@@ -70,6 +75,7 @@ namespace WebAddressbookTests
         public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.Name("submit")).Click();
+            contactCache = null;
             return this;
         }
 
@@ -104,6 +110,7 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.XPath("(//input[@value='Delete'])")).Click();
             driver.SwitchTo().Alert().Accept();
+            contactCache = null;
             return this;
         }
 
@@ -116,6 +123,7 @@ namespace WebAddressbookTests
         public ContactHelper SubmitContactModification()
         {
             driver.FindElement(By.Name("update")).Click();
+            contactCache = null;
             return this;
         }
 
