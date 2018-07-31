@@ -46,6 +46,11 @@ namespace WebAddressbookTests
             return contactCache;
         }
 
+        public int GetContactCount()
+        {
+            return driver.FindElements(By.Name("entry")).Count;
+        }
+
         public ContactHelper Remove(int v)
         {
             manager.Navigator.GoToContactsPage();

@@ -43,6 +43,11 @@ namespace WebAddressbookTests
             return new List<GroupData>(groupCache);
         }
 
+        public int GetGroupCount()
+        {
+            return driver.FindElements(By.CssSelector("span.group")).Count;
+        }
+
         public GroupHelper Modify(int v, GroupData newData)
         {
             manager.Navigator.GoToGroupsPage();
