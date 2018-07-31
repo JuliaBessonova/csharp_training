@@ -40,7 +40,10 @@ namespace WebAddressbookTests
                 {
                     string lastname = element.FindElement(By.XPath(".//td[2]")).Text;
                     string firstname = element.FindElement(By.XPath(".//td[3]")).Text;
-                    contactCache.Add(new ContactData(firstname, lastname));
+                    contactCache.Add(new ContactData(firstname, lastname)
+                    {
+                        Id = element.FindElement(By.TagName("input")).GetAttribute("value")
+                    });
                 }
             }
             return contactCache;
