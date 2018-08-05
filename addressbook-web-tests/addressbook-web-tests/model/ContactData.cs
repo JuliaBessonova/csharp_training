@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace WebAddressbookTests
 {
     public class ContactData : IEquatable<ContactData>, IComparable<ContactData>
     {
-        
+        public string allphones;
+        public string allemails;
+
         public ContactData(string firstname, string lastname)
         {
             Firstname = firstname;
@@ -69,13 +72,63 @@ namespace WebAddressbookTests
         public string Mobile { get; set; }
         
         public string Work { get; set; }
-        
+
+        public string AllPhones
+        {
+            get
+            {
+                if (allphones != null)
+                {
+                    return allphones;
+                }
+                else
+                {
+                    return (CleanUp(Home) + CleanUp(Mobile) + CleanUp(Work) + CleanUp(Phone2)).Trim();
+                }
+            }
+
+            set
+            {
+                allphones = value;
+            }
+        }
+
+        private string CleanUp(string value)
+        {
+            if (value == null || value == "")
+            {
+                return "";
+            }
+            return value.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "") + "\r\n";
+        }
+
         public string Email { get; set; }
         
         public string Email2 { get; set; }
         
         public string Email3 { get; set; }
-        
+
+        public string AllEmails
+        {
+            get
+            {
+                if (allemails != null)
+                {
+                    return allemails;
+                }
+                else
+                {
+                    return (CleanUp(Email) + CleanUp(Email2) + CleanUp(Email3)).Trim();
+
+                }
+                    
+            }
+            set
+            {
+                allemails = value;
+            }
+        }
+
         public string Phone2 { get; set; }
 
         
