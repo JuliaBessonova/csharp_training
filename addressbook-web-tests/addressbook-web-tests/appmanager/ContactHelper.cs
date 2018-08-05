@@ -39,6 +39,19 @@ namespace WebAddressbookTests
 
         }
 
+        /*public ContactData GetContactInformationFromViewForm(int index)
+        {
+            manager.Navigator.GoToContactsPage();
+            OpenContactViewForm(0);
+            
+        }*/
+
+        public ContactHelper OpenContactViewForm(int index)
+        {
+            driver.FindElement(By.XPath("(//table[@id='maintable']/tbody/tr/td[7]/a/img)[" + (index + 1) + "]")).Click();
+            return this;
+        }
+
         public ContactData GetContactInformationFromEditForm(int index)
         {
             manager.Navigator.GoToContactsPage();
