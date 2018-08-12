@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfGroupData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <GroupData>
+    <Name>977480796173</Name>
+    <Header>81</Header>
+    <Footer>7441</Footer>
+  </GroupData>
+  <GroupData>
+    <Name>685350</Name>
+    <Header>40</Header>
+    <Footer>598688483272</Footer>
+  </GroupData>
+</ArrayOfGroupData>
