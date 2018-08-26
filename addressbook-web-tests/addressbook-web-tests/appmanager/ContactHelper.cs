@@ -39,6 +39,7 @@ namespace WebAddressbookTests
 
         }
 
+
         /*public ContactData GetContactInformationFromViewForm(int index)
         {
             manager.Navigator.GoToContactsPage();
@@ -127,11 +128,31 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public ContactHelper Remove(ContactData contact)
+        {
+            manager.Navigator.GoToContactsPage();
+            SelectContact(contact.Id);
+            RemoveContact();
+            manager.Navigator.GoToContactsPage();
+            return this;
+        }
+
         public ContactHelper Modify(int v, ContactData newData)
         {
             manager.Navigator.GoToContactsPage();
             SelectContact(v);
             InitContactModification(v);
+            FillContactForm(newData);
+            SubmitContactModification();
+            ReturnToContactsPage();
+            return this;
+        }
+
+        public ContactHelper Modify(ContactData contact, ContactData newData)
+        {
+            manager.Navigator.GoToContactsPage();
+            SelectContact(contact.Id);
+            InitContactModification(contact.Id);
             FillContactForm(newData);
             SubmitContactModification();
             ReturnToContactsPage();
@@ -178,6 +199,12 @@ namespace WebAddressbookTests
             return this;
         }
 
+        public ContactHelper SelectContact(String id)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]' and @id='"+id+"'])")).Click();
+            return this;
+        }
+
         public ContactHelper RemoveContact()
         {
             driver.FindElement(By.XPath("(//input[@value='Delete'])")).Click();
@@ -189,6 +216,12 @@ namespace WebAddressbookTests
         public ContactHelper InitContactModification(int index)
         {
             driver.FindElement(By.XPath("(//table[@id='maintable']/tbody/tr/td[8]/a/img)[" + (index+1) + "]")).Click();
+            return this;
+        }
+
+        public ContactHelper InitContactModification(String id)
+        {
+            driver.FindElement(By.Id(id)).FindElement(By.XPath("(//img[@alt='Edit'])")).Click();
             return this;
         }
 
