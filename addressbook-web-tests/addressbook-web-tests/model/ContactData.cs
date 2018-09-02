@@ -13,6 +13,7 @@ namespace WebAddressbookTests
     {
         public string allphones;
         public string allemails;
+        public string alldata;
 
         public ContactData()
         {
@@ -146,6 +147,28 @@ namespace WebAddressbookTests
             set
             {
                 allemails = value;
+            }
+        }
+
+        public string AllData
+        {
+            get
+            {
+                if (alldata != null)
+                {
+                    return alldata;
+                }
+                else
+                {
+                    return (Firstname + " " + Lastname + "\r\n" + Address
+                        + "\r\n" + "\r\n" + "H: " + Home + "\r\n" + "M: " + Mobile + "\r\n"
+                        + "W: " + Work + "\r\n" + "\r\n" + Email + "\r\n" + Email2 + "\r\n"
+                        + Email3 + "\r\n" + "\r\n" + "\r\n" + "\r\n" + "P: " + Phone2 + "\r\n").Trim();
+                }
+            }
+            set
+            {
+                alldata = value;
             }
         }
 
